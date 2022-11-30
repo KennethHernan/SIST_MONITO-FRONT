@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+
+:root {
+  --opacity-black: 0.7;
+  --color-border: #d6d6d6;
+  --color-input: #EAEAEA;
+  --color-selection: #F2F2F2;
+  --color-plomo: #EFEFEF;
+  --color-celeste: #94BCF0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}

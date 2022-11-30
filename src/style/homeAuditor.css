@@ -1,0 +1,223 @@
+.bodyAgente {
+    margin-top: 108px;
+    height: auto;
+    overflow: hidden;
+}
+
+.content-title {
+    padding-left: 5%;
+    margin: 20px 0;
+    font-size: 18px;
+    height: auto;
+}
+.content-busqueda{
+    width: 100%;
+    padding-left: 5%;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.busqueda-main{
+    width: 35vh;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.busqueda-main input[type=text]{
+    width: 21vh;
+    height: 20px;
+    border-radius: 7px 0 0 7px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+    background-color: var(--color-plomo);
+    color: #959692;
+    padding: 10px 10px 10px 20px;
+}
+.busqueda-main button{
+    width: 5vh;
+    height: 40px;
+    border: none;
+    border-radius: 0 7px 7px 0; 
+}
+.busqueda-main button img{
+    width: 50%;
+    margin: 10px;
+}
+.busqueda-main form div{
+    display: flex;
+    align-items: center;
+}
+
+.busqueda-filtro{
+    width: 100%;
+    margin-left: 20px;
+    font-size: 12px;
+}
+.busqueda-filtro input{
+    font-size: 12px;
+}
+.filtro-head{
+    width: 63vh;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.filtro-head div{
+    width: 30vh;
+    height: 40px;
+    background-color:var(--color-plomo);
+    display: flex;
+    flex-direction: row;
+    border-radius: 7px;
+}
+.filtro-head div p{
+    padding: 10px 10px 10px 20px;
+    color: #959692;
+}
+.filtro-head input[type=submit]{
+    width: 30vh;
+    margin-left: 20px;
+    border-radius: 7px;
+    color: #51A78A;
+    border: 1px solid #51A78A;
+    background-color: #fff;
+}
+.filtro-foot{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    flex-direction: row;
+}
+.foot-auditor{
+    display: flex;
+    flex-direction: row;
+}
+.foot-auditor input[type=text]{
+    width: 21vh;
+    height: 20px;
+    border-radius: 7px 0 0 7px;
+    border: none;
+    outline: none;
+    background-color: var(--color-plomo);
+    color: #959692;
+    padding: 10px 10px 10px 20px;
+}
+.foot-auditor button{
+    width: 5vh;
+    height: 40px;
+    border: none;
+    border-radius: 0 7px 7px 0; 
+}
+.foot-auditor button img{
+    width: 50%;
+    margin: 10px;
+}
+.foot-campaña{
+    width: 28vh;
+    height: auto;
+    margin-left: 20px;
+}
+.foot-campaña select{
+    width: 100%;
+    height: 40px;
+    border-radius: 7px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+    background-color: var(--color-plomo);
+    color: #959692;
+    padding: 10px 10px 10px 20px;
+}
+
+.foot-fecha{
+    margin-left: 20px;
+    width: 28vh;
+    display: flex;
+    align-items: center;
+}
+.foot-fecha input[type=date]{
+    width: 21vh;
+    height: 20px;
+    border-radius: 7px 0 0 7px;
+    border: none;
+    outline: none;
+    background-color: var(--color-plomo);
+    color: #959692;
+    padding: 10px 10px 10px 20px;
+}
+.foot-fecha button{
+    width: 5vh;
+    height: 40px;
+    border: none;
+    border-radius: 0 7px 7px 0;
+}
+.foot-fecha button img{
+    width: 50%;
+    margin: 10px;
+}
+.tabe-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.tabe-info table{
+    width: 80%;
+    border-collapse:collapse;
+    font-size: 12px;
+    text-align: center;
+    color: #959692;
+}
+.tabe-info table tr:first-child{
+    background-color: #F5F5F5;
+    justify-content: center;
+}
+
+.tabe-info table tr{
+    height: 40px;
+    border: 1px solid var(--color-border);
+}
+.tabe-info table tr:first-child > td:first-child{
+    border-radius: 7px 0px 0 0;
+}
+.tabe-info table tr:first-child > td:last-child{
+    border-radius: 0 7px 0 0;
+}
+.tabe-info table tr:last-child > td:first-child{
+    border-radius: 0 0 0 7px;
+}
+.tabe-info table tr:last-child > td:last-child{
+    border-radius: 0 0 7px 0;
+}
+.tabe-info table tr td button{
+    width: 10vh;
+    border: none;
+    background-color: var(--color-celeste);
+    height: 25px;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 10px;
+}
+.content-tabla-foot{
+    width: auto;
+    margin: 10px 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+}
+.content-tabla-foot div{
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    background-color: #D6FDF0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-tabla-foot p{
+    color: #959692;
+}
