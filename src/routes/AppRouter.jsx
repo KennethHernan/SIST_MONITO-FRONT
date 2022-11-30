@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import { Login } from '../views/auth/Login';
 import { HomeAgente } from '../views/HomeAgente';
@@ -10,7 +10,7 @@ export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={ <Navigate to='/auth/login'/> } />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/HomeAgente" element={<HomeAgente />} />
         <Route path="/HomeAuditor" element={<HomeAuditor />} />
