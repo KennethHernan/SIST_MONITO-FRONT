@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import buscar from "../assets/buscar.png";
 import React, { useState, useEffect } from "react";
 import { useAgents } from "../hooks/useAgents";
+import { useAtom } from "jotai";
+import { dataUser } from "../store/storeUser";
 
 export const HomeAuditor = () => {
+  const [user , setUser] = useAtom(dataUser);
     const [dataAgents, setDataAgents] = useState([]);
   const { getAgents } = useAgents();
 
@@ -20,6 +23,7 @@ export const HomeAuditor = () => {
         setDataAgents(response);
         
       }
+      console.log(user, 'estado global de user');
      
 };
 console.log(dataAgents)

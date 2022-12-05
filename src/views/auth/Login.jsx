@@ -1,24 +1,38 @@
 import "../../style/auth.css";
 import logo from "../../assets/mtg.png";
-import { Link } from "react-router-dom";
-import React, { useState, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState} from "react";
 import { useAuth } from "../../hooks/useAuth";
 
 
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [dataLogin, setDataLogin] = useState([]);
   const { login } = useAuth();
 
   const onLogin = async (e) => {
     e.preventDefault();
     const user  = await login(dataLogin);
-    if (user) {
-      console.log(" hay user");
-    }else{
-      console.log(" no hay user");
+    if (!user) {
+      return 
     }
-
+    try {
+      if (user && user.role.rolName === "AUDITOR") {
+        console.log('HOME AUDITOR');
+        navigate("/HomeAuditor");
+        
+       }else{
+         console.log("HOME AGENTE");
+          navigate("/HomeAgente");
+       }
+  
+      
+    } catch (error) {
+      console.log("error", error);
+      
+    }
+   
   };
 
 
