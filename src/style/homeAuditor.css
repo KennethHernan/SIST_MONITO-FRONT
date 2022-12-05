@@ -192,7 +192,7 @@
 .tabe-info table tr:last-child > td:last-child{
     border-radius: 0 0 7px 0;
 }
-.tabe-info table tr td button{
+.audit-button{
     width: 10vh;
     border: none;
     background-color: var(--color-celeste);
