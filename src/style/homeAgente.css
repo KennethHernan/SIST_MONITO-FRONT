@@ -4,11 +4,30 @@
     overflow: hidden;
 }
 
-.content-title {
+.content-title-audi {
     padding-left: 5%;
     margin: 20px 0;
     font-size: 18px;
     height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.content-firma{
+    width: 20vh;
+    height: auto;
+    margin-left: 25px;
+}
+.content-firma select{
+    width: 100%;
+    height: 35px;
+    border-radius: 7px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+    background-color: var(--color-celeste);
+    color: #fff;
+    padding: 10px 10px 10px 20px;
 }
 
 .content-notification {

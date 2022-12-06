@@ -17,12 +17,6 @@ export const HeaderAgente = () => {
                 <div className="content-header">
                     <div className="profile">
                       <p>Armando Perez</p>
-                      <div className="notification">
-                        <img src={notifi} alt="logo"/>
-                      </div>
-                      <div className="configuration">
-                        <img src={config} alt="logo"/>
-                      </div>
                       <div className="circle">
                         <img src={usuario} alt="logo"/>
                       </div>

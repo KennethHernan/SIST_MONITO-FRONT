@@ -55,7 +55,7 @@ export const EvaluationAgente = () => {
                     </div>
                     <div>
                         <p>State: </p>
-                        <p>Open</p>
+                        <p>No Firmado</p>
                     </div>
                     <div>
                         <p>Campaign:</p>

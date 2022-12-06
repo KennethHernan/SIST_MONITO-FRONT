@@ -7,8 +7,14 @@ export const HomeAgente = () => {
   return (
     <div className="bodyAgente">
         <HeaderAgente/>
-        <div className="content-title">
-          <p>Notificaciones</p>
+        <div className="content-title-audi">
+          <p>Lista de auditorias</p>
+          <div className="content-firma">
+                <select>
+                  <option value="0">Firmado</option>
+                  <option value="1">No Firmado</option>
+                </select>
+            </div>
         </div>
         <div className="content-notification">
             <li>

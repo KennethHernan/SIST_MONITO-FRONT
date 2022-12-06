@@ -5,7 +5,7 @@ import buscar from "../assets/buscar.png";
 import React, { useState, useEffect } from "react";
 import { useAgents } from "../hooks/useAgents";
 
-export const HomeAuditor = () => {
+export const Page2Auditor = () => {
     const [dataAgents, setDataAgents] = useState([]);
   const { getAgents } = useAgents();
 
@@ -27,7 +27,14 @@ console.log(dataAgents)
     <div className="bodyAgente">
       <HeaderAuditor />
       <div className="content-title">
-        <p>Reportes</p>
+        <div>
+            <p>Reportes</p>
+        </div>
+        <div>
+         <Link to="/HomeAuditor">
+            <p>Regresar</p>
+         </Link>
+        </div>
       </div>
       <div className="content-busqueda">
         <div className="busqueda-main">
@@ -56,6 +63,12 @@ console.log(dataAgents)
                   <option value="1">CCU</option>
                 </select>
               </div>
+              <div className="foot-fecha">
+                <input type="date" />
+                <button type="submit">
+                  <img src={buscar} alt="" />
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -65,42 +78,42 @@ console.log(dataAgents)
           <table>
             <thead>
               <tr>
-                <td>ID</td>
+                <td>SURVEY ID</td>
                 <td>AGENTE </td>
-                <td>CAMPAÑA</td>
-                <td>N° ENCUESTA</td>
+                <td>CAMPAIGN</td>
+                <td>FECHA DE CREACIÓN</td>
                 <td></td>
               </tr>
               <tr>
-                <td>364242</td>
-                <td>Jorge</td>
-                <td>Entel</td>
-                <td>0</td>
+                <td>80727525</td>
+                <td>Armando Pérez</td>
+                <td>Banco Estado</td>
+                <td>Sep 23 16:56, 2022</td>
                 <td>
-                  <Link to="/Page2Auditor">
-                    <button>Ver auditorias</button>
+                  <Link to="/EvaluationAuditor">
+                    <button>Ver</button>
                   </Link>
                 </td>
               </tr>
               <tr>
-                <td>804242</td>
-                <td>Sebastian</td>
-                <td>Entel</td>
-                <td>10</td>
+                <td>95727525</td>
+                <td>Armando Pérez</td>
+                <td>Cencosud</td>
+                <td>Sep 14 12:46, 2022</td>
                 <td>
-                  <Link to="/Page2Auditor">
-                    <button>Ver auditorias</button>
+                  <Link to="/EvaluationAuditor">
+                    <button>Ver</button>
                   </Link>
                 </td>
               </tr>
               <tr>
-                <td>804242</td>
-                <td>Armando</td>
-                <td>Entel</td>
-                <td>10</td>
+                <td>60727525</td>
+                <td>Armando Pérez</td>
+                <td>CCU</td>
+                <td>Sep 06 15:54, 2022</td>
                 <td>
-                  <Link to="/Page2Auditor">
-                    <button>Ver auditorias</button>
+                  <Link to="/EvaluationAuditor">
+                    <button>Ver</button>
                   </Link>
                 </td>
               </tr>

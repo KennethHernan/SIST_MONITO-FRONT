@@ -116,9 +116,8 @@
     margin: 10px;
 }
 .foot-campaña{
-    width: 28vh;
+    width: 30vh;
     height: auto;
-    margin-left: 20px;
 }
 .foot-campaña select{
     width: 100%;
@@ -193,8 +192,9 @@
     border-radius: 0 0 7px 0;
 }
 .tabe-info table tr td button{
-    width: 10vh;
+    width: auto;
     border: none;
+    padding: 0 20px;
     background-color: var(--color-celeste);
     height: 25px;
     border-radius: 7px;

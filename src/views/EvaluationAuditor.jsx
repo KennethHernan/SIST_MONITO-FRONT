@@ -13,7 +13,7 @@ export const EvaluationAuditor = () => {
                 <p>Quality Evaluation</p>
             </div>
             <div>
-             <Link to="/HomeAuditor">
+             <Link to="/Page2Auditor">
                 <p>Regresar</p>
              </Link>
             </div>
@@ -51,7 +51,8 @@ export const EvaluationAuditor = () => {
                     </div>
                 </div>
                 <div className="profile-audio">
-                    <audio src={ audio } controls></audio>
+                    <input type="file" name="file" id="file" class="inputfile" />
+                    <label class="label" for="file">Insertar Audio</label>
                 </div>
            </div>
            <div className="content-progress">
