@@ -1,12 +1,16 @@
 import "../style/homeAuditor.css";
 import { HeaderAuditor } from "../components/ui/HeaderAuditor";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import buscar from "../assets/buscar.png";
 import React, { useState, useEffect } from "react";
 import { useAgents } from "../hooks/useAgents";
+import { useAtom } from "jotai";
+import { dataUser } from "../store/storeUser";
 
 export const HomeAuditor = () => {
-    const [dataAgents, setDataAgents] = useState([]);
+  const [user , setUser] = useAtom(dataUser);
+  const navigate = useNavigate();
+  const [dataAgents, setDataAgents] = useState([]);
   const { getAgents } = useAgents();
 
   useEffect(() => {
@@ -20,6 +24,7 @@ export const HomeAuditor = () => {
         setDataAgents(response);
         
       }
+      console.log(user, 'estado global de user');
      
 };
 console.log(dataAgents)
@@ -62,7 +67,7 @@ console.log(dataAgents)
       </div>
       <div className="content-table">
         <div className="tabe-info">
-          <table>
+        <table>
             <thead>
               <tr>
                 <td>ID</td>
@@ -104,7 +109,36 @@ console.log(dataAgents)
                   </Link>
                 </td>
               </tr>
+              <tr>
+                <td>#</td>
+                <td>AGENTE</td>
+                <td>CAMPAÑA</td>
+                <td>N° DE ENCUESTAS</td>
+                <td></td>
+              </tr>
             </thead>
+            <tbody>
+              {dataAgents.map((agents) => {
+                return (
+                  <tr key={agents.idAgent}>
+                    <td>{agents.idAgent}</td>
+                    <td>{agents.fullname}</td>
+                    <td>{agents.user.role.rolName}</td>
+                    <td>{agents.user.surveys}</td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          navigate(`/EvaluationAgente/${agents.idAgent}`);
+                        }}
+                        className="audit-button"
+                      >
+                        Ver encuentas
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
         <div className="content-tabla-foot">
