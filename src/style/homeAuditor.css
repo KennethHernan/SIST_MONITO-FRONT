@@ -193,6 +193,13 @@
 }
 .tabe-info table tr td button{
     width: auto;
+    padding: 0 20px;
+    background-color: var(--color-celeste);
+    border: none;
+    border-radius: 7px;
+    height: 25px;
+    color: #fff;
+    font-size: 10px;
 }
 .audit-button{
     width: 10vh;

@@ -17,7 +17,7 @@ export function AppRouter() {
         <Route path="/HomeAuditor" element={<HomeAuditor />} />
         <Route path="/EvaluationAgente" element={<EvaluationAgente />} />
         <Route path="/EvaluationAuditor" element={<EvaluationAuditor />} />
-        <Route path="/" element={<Page2Auditor />} />
+        <Route path="/Page2Auditor" element={<Page2Auditor />} />
       </Routes>
     </BrowserRouter>
   );
