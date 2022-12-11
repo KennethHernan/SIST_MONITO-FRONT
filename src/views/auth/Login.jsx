@@ -1,40 +1,44 @@
 import "../../style/auth.css";
 import logo from "../../assets/mtg.png";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-
-
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [dataLogin, setDataLogin] = useState([]);
-  const { login } = useAuth();
+  const [dataLogin, setDataLogin] = useState({});
+  const [checked, setChecked] = useState("agent");
+  const { login, loginAuditor } = useAuth();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const user  = await login(dataLogin);
-    if (!user.agent) {
-      return 
+
+    if (checked === "auditor") {
+      const { dataAuditor, msg } = await loginAuditor(dataLogin);
+      console.log(dataAuditor);
+
+      if (!dataAuditor) {
+        return;
+      }
+
+      navigate("/HomeAuditor");
     }
-    try {
-      if (user.agent && user.agent.user.role.rolName === "AUDITOR") {
-        console.log('HOME AUDITOR');
-        navigate("/HomeAuditor");
-        
-       }else{
-         console.log("HOME AGENTE");
-          navigate("/HomeAgente");
-       }
-  
-      
-    } catch (error) {
-      console.log("error", error);
-      
+
+    if (checked === "agent") {
+      const { dataAgent, msg } = await login(dataLogin);
+      console.log(dataAgent);
+
+      if (!dataAgent) {
+        return;
+      }
+
+      navigate("/HomeAgente");
     }
-   
   };
 
+  const changeRadioButton = (e) => {
+    setChecked(e.target.value);
+  };
 
   return (
     <div className="body">
@@ -62,10 +66,29 @@ export const Login = () => {
                   setDataLogin({ ...dataLogin, password: e.target.value })
                 }
               />
+              <div className="inputs-checkbox">
+                <div className="input-checkbox">
+                  <label>Agent</label>
+                  <input
+                    type="radio"
+                    value="agent"
+                    onChange={changeRadioButton}
+                    checked={checked === "agent" ? true : false}
+                  />
+                </div>
+
+                <div className="input-checkbox">
+                  <label>Auditor</label>
+                  <input
+                    type="radio"
+                    value="auditor"
+                    onChange={changeRadioButton}
+                    checked={checked === "auditor" ? true : false}
+                  />
+                </div>
+              </div>
               <div>
-              
-                  <input type="submit" value="Continuar" />
-                
+                <input type="submit" value="Continuar" />
               </div>
             </form>
           </div>

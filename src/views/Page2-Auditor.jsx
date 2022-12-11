@@ -5,14 +5,13 @@ import buscar from "../assets/buscar.png";
 import React, { useState, useEffect } from "react";
 import { useAgents } from "../hooks/useAgents";
 import { useParams } from "react-router-dom";
-import { useAudit } from "../hooks/useAudit";
+// import { useAudit } from "../hooks/useAudit";
 import { useNavigate } from "react-router-dom";
-
 
 export const Page2Auditor = () => {
   const [dataAgent, setDataAgent] = useState([]);
   const [dataSurvey, setDataSurvey] = useState([]);
-  const { getSurveyAgentByID } = useAudit();
+  // const { getSurveyAgentByID } = useAudit();
   const { getAgentById } = useAgents();
   const params = useParams();
   const navigate = useNavigate();
@@ -24,19 +23,19 @@ export const Page2Auditor = () => {
 
   const getAgent = async () => {
     const response = await getAgentById(params.id);
-    console.log(response)
+    console.log(response);
     if (response) {
       setDataAgent(response);
     }
   };
 
-  const listSurvey = async () => {
-    const response = await getSurveyAgentByID(params.id);
-    console.log(response)
-    if (response) {
-      setDataSurvey(response);
-    }
-  };
+  // const listSurvey = async () => {
+  //   const response = await getSurveyAgentByID(params.id);
+  //   console.log(response)
+  //   if (response) {
+  //     setDataSurvey(response);
+  //   }
+  // };
 
   // if (dataAgents.length === 0) {
   //     return null
@@ -105,15 +104,14 @@ export const Page2Auditor = () => {
               </tr>
             </thead>
             <tbody>
-              {
-                dataSurvey.map((survey) =>{
-                  return(
-                    <tr key={survey.idSurvey}>
-                      <td>{survey.idSurvey}</td>
-                      <td>{dataAgent.fullname}</td>
-                      <td>{dataAgent.campaign}</td>
-                      <td>{survey.createdAt}</td>
-                      <td>
+              {dataSurvey.map((survey) => {
+                return (
+                  <tr key={survey.idSurvey}>
+                    <td>{survey.idSurvey}</td>
+                    <td>{dataAgent.fullname}</td>
+                    <td>{dataAgent.campaign}</td>
+                    <td>{survey.createdAt}</td>
+                    <td>
                       <button
                         onClick={() => {
                           navigate(`/EvaluationAuditor/${survey.idSurvey}`);
@@ -122,11 +120,10 @@ export const Page2Auditor = () => {
                       >
                         Ver encuentas
                       </button>
-                      </td>
-                    </tr>
-                  )
-                })
-              }
+                    </td>
+                  </tr>
+                );
+              })}
               {/* {dataAgents
                 .filter((agent) => agent.idAgent == params.id)
                 .map((agent) => {
