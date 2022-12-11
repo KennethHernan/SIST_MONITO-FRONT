@@ -4,36 +4,55 @@ import { Link } from "react-router-dom";
 import buscar from "../assets/buscar.png";
 import React, { useState, useEffect } from "react";
 import { useAgents } from "../hooks/useAgents";
+import { useParams } from "react-router-dom";
+import { useAudit } from "../hooks/useAudit";
+import { useNavigate } from "react-router-dom";
+
 
 export const Page2Auditor = () => {
-    const [dataAgents, setDataAgents] = useState([]);
-  const { getAgents } = useAgents();
+  const [dataAgent, setDataAgent] = useState([]);
+  const [dataSurvey, setDataSurvey] = useState([]);
+  const { getSurveyAgentByID } = useAudit();
+  const { getAgentById } = useAgents();
+  const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    onGetAgents();
+    getAgent();
+    listSurvey();
   }, []);
 
-  const onGetAgents = async () => {
-  
-      const response  = await getAgents();
-      if (response) {
-        setDataAgents(response);
-        
-      }
-     
-};
-console.log(dataAgents)
+  const getAgent = async () => {
+    const response = await getAgentById(params.id);
+    console.log(response)
+    if (response) {
+      setDataAgent(response);
+    }
+  };
+
+  const listSurvey = async () => {
+    const response = await getSurveyAgentByID(params.id);
+    console.log(response)
+    if (response) {
+      setDataSurvey(response);
+    }
+  };
+
+  // if (dataAgents.length === 0) {
+  //     return null
+  // }
+
   return (
     <div className="bodyAgente">
       <HeaderAuditor />
       <div className="content-title">
         <div>
-            <p>Reportes</p>
+          <p>Reportes</p>
         </div>
         <div>
-         <Link to="/HomeAuditor">
+          <Link to="/HomeAuditor">
             <p>Regresar</p>
-         </Link>
+          </Link>
         </div>
       </div>
       <div className="content-busqueda">
@@ -84,40 +103,48 @@ console.log(dataAgents)
                 <td>FECHA DE CREACIÓN</td>
                 <td></td>
               </tr>
-              <tr>
-                <td>80727525</td>
-                <td>Armando Pérez</td>
-                <td>Banco Estado</td>
-                <td>Sep 23 16:56, 2022</td>
-                <td>
-                  <Link to="/EvaluationAuditor">
-                    <button>Ver</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td>95727525</td>
-                <td>Armando Pérez</td>
-                <td>Cencosud</td>
-                <td>Sep 14 12:46, 2022</td>
-                <td>
-                  <Link to="/EvaluationAuditor">
-                    <button>Ver</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td>60727525</td>
-                <td>Armando Pérez</td>
-                <td>CCU</td>
-                <td>Sep 06 15:54, 2022</td>
-                <td>
-                  <Link to="/EvaluationAuditor">
-                    <button>Ver</button>
-                  </Link>
-                </td>
-              </tr>
             </thead>
+            <tbody>
+              {
+                dataSurvey.map((survey) =>{
+                  return(
+                    <tr key={survey.idSurvey}>
+                      <td>{survey.idSurvey}</td>
+                      <td>{dataAgent.fullname}</td>
+                      <td>{dataAgent.campaign}</td>
+                      <td>{survey.createdAt}</td>
+                      <td>
+                      <button
+                        onClick={() => {
+                          navigate(`/EvaluationAuditor/${survey.idSurvey}`);
+                        }}
+                        className="audit-button"
+                      >
+                        Ver encuentas
+                      </button>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+              {/* {dataAgents
+                .filter((agent) => agent.idAgent == params.id)
+                .map((agent) => {
+                  return (
+                    <tr key={agent.idAgent}>
+                      <td>{agent.surveys.idSurvey}</td>
+                      <td>{agent.fullname}</td>
+                      <td>{agent.campaign}</td>
+                      <td>Sep 23 16:56, 2022</td>
+                      <td>
+                        <Link to="/EvaluationAuditor">
+                          <button>Ver</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })} */}
+            </tbody>
           </table>
         </div>
         <div className="content-tabla-foot">

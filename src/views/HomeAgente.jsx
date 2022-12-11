@@ -2,8 +2,13 @@ import "../style/homeAgente.css";
 import { HeaderAgente } from '../components/ui/HeaderAgente';
 import { Link } from "react-router-dom";
 import usuario  from "../assets/usuario.png";
+import { dataUser } from "../store/storeUser";
+import { useAtom } from "jotai";
 
 export const HomeAgente = () => {
+    const [user, setUser] = useAtom(dataUser);
+
+    console.log(user)
   return (
     <div className="bodyAgente">
         <HeaderAgente/>

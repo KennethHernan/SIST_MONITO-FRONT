@@ -5,6 +5,7 @@ import usuario  from "../assets/usuario.png";
 import audio  from "../assets/pipipAudio.mp4";
 
 export const EvaluationAuditor = () => {
+    
   return (
     <div className="bodyAgente">
         <HeaderAuditor/>
@@ -51,8 +52,8 @@ export const EvaluationAuditor = () => {
                     </div>
                 </div>
                 <div className="profile-audio">
-                    <input type="file" name="file" id="file" class="inputfile" />
-                    <label class="label" for="file">Insertar Audio</label>
+                    <input type="file" name="file" id="file" className="inputfile" />
+                    <label className="label" for="file">Insertar Audio</label>
                 </div>
            </div>
            <div className="content-progress">

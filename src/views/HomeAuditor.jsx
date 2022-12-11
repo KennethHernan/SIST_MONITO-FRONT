@@ -8,7 +8,7 @@ import { useAtom } from "jotai";
 import { dataUser } from "../store/storeUser";
 
 export const HomeAuditor = () => {
-  const [user , setUser] = useAtom(dataUser);
+  const [user, setUser] = useAtom(dataUser);
   const navigate = useNavigate();
   const [dataAgents, setDataAgents] = useState([]);
   const { getAgents } = useAgents();
@@ -18,16 +18,17 @@ export const HomeAuditor = () => {
   }, []);
 
   const onGetAgents = async () => {
-  
-      const response  = await getAgents();
-      if (response) {
-        setDataAgents(response);
-        
-      }
-      console.log(user, 'estado global de user');
-     
-};
-console.log(dataAgents)
+    const response = await getAgents();
+    if (response) {
+      setDataAgents(response);
+    }
+    console.log(user, "estado global de user");
+
+    if (!dataAgents) {
+      return null;
+    }
+  };
+  console.log(dataAgents);
   return (
     <div className="bodyAgente">
       <HeaderAuditor />
@@ -70,46 +71,6 @@ console.log(dataAgents)
         <table>
             <thead>
               <tr>
-                <td>ID</td>
-                <td>AGENTE </td>
-                <td>CAMPAÑA</td>
-                <td>N° ENCUESTA</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>364242</td>
-                <td>Jorge</td>
-                <td>Entel</td>
-                <td>0</td>
-                <td>
-                  <Link to="/Page2Auditor">
-                    <button>Ver auditorias</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td>804242</td>
-                <td>Sebastian</td>
-                <td>Entel</td>
-                <td>10</td>
-                <td>
-                  <Link to="/Page2Auditor">
-                    <button>Ver auditorias</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <td>804242</td>
-                <td>Armando</td>
-                <td>Entel</td>
-                <td>10</td>
-                <td>
-                  <Link to="/Page2Auditor">
-                    <button>Ver auditorias</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
                 <td>#</td>
                 <td>AGENTE</td>
                 <td>CAMPAÑA</td>
@@ -118,17 +79,17 @@ console.log(dataAgents)
               </tr>
             </thead>
             <tbody>
-              {dataAgents.map((agents) => {
+              {dataAgents.filter(agent => agent.user.role.idRole === 1).map((agent) => {
                 return (
-                  <tr key={agents.idAgent}>
-                    <td>{agents.idAgent}</td>
-                    <td>{agents.fullname}</td>
-                    <td>{agents.user.role.rolName}</td>
-                    <td>{agents.user.surveys}</td>
+                  <tr key={agent.idAgent}>
+                    <td>{agent.idAgent}</td>
+                    <td>{agent.fullname}</td>
+                    <td>{agent.user.role.rolName}</td>
+                    <td>{agent.user.surveys}</td>
                     <td>
                       <button
                         onClick={() => {
-                          navigate(`/EvaluationAgente/${agents.idAgent}`);
+                          navigate(`/Page2Auditor/${agent.idAgent}`);
                         }}
                         className="audit-button"
                       >

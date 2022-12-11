@@ -14,11 +14,11 @@ export const Login = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const user  = await login(dataLogin);
-    if (!user) {
+    if (!user.agent) {
       return 
     }
     try {
-      if (user && user.role.rolName === "AUDITOR") {
+      if (user.agent && user.agent.user.role.rolName === "AUDITOR") {
         console.log('HOME AUDITOR');
         navigate("/HomeAuditor");
         
