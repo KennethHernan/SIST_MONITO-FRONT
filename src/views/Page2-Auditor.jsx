@@ -5,13 +5,15 @@ import buscar from "../assets/buscar.png";
 import React, { useState, useEffect } from "react";
 import { useAgents } from "../hooks/useAgents";
 import { useParams } from "react-router-dom";
-// import { useAudit } from "../hooks/useAudit";
+import { useAudit } from "../hooks/useAudit";
 import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { dataStoreSelectedAgent } from "../store/storeAgent";
 
 export const Page2Auditor = () => {
-  const [dataAgent, setDataAgent] = useState([]);
+  const [dataStoreAgent, setDataStoreAgent] = useAtom(dataStoreSelectedAgent)
   const [dataSurvey, setDataSurvey] = useState([]);
-  // const { getSurveyAgentByID } = useAudit();
+  const { getSurveyAgentByID } = useAudit();
   const { getAgentById } = useAgents();
   const params = useParams();
   const navigate = useNavigate();
@@ -25,21 +27,19 @@ export const Page2Auditor = () => {
     const response = await getAgentById(params.id);
     console.log(response);
     if (response) {
-      setDataAgent(response);
+      setDataStoreAgent(response);
     }
   };
 
-  // const listSurvey = async () => {
-  //   const response = await getSurveyAgentByID(params.id);
-  //   console.log(response)
-  //   if (response) {
-  //     setDataSurvey(response);
-  //   }
-  // };
+  console.log(dataStoreAgent,"este es el dato del agente GLOBAL")
 
-  // if (dataAgents.length === 0) {
-  //     return null
-  // }
+  const listSurvey = async () => {
+    const response = await getSurveyAgentByID(params.id);
+    console.log(response)
+    if (response) {
+      setDataSurvey(response);
+    }
+  };
 
   return (
     <div className="bodyAgente">
@@ -108,8 +108,8 @@ export const Page2Auditor = () => {
                 return (
                   <tr key={survey.idSurvey}>
                     <td>{survey.idSurvey}</td>
-                    <td>{dataAgent.fullname}</td>
-                    <td>{dataAgent.campaign}</td>
+                    <td>{dataStoreAgent.fullname}</td>
+                    <td>{dataStoreAgent.campaign}</td>
                     <td>{survey.createdAt}</td>
                     <td>
                       <button
@@ -124,23 +124,6 @@ export const Page2Auditor = () => {
                   </tr>
                 );
               })}
-              {/* {dataAgents
-                .filter((agent) => agent.idAgent == params.id)
-                .map((agent) => {
-                  return (
-                    <tr key={agent.idAgent}>
-                      <td>{agent.surveys.idSurvey}</td>
-                      <td>{agent.fullname}</td>
-                      <td>{agent.campaign}</td>
-                      <td>Sep 23 16:56, 2022</td>
-                      <td>
-                        <Link to="/EvaluationAuditor">
-                          <button>Ver</button>
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })} */}
             </tbody>
           </table>
         </div>

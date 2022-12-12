@@ -16,8 +16,8 @@ export function AppRouter() {
         <Route path="/HomeAgente" element={<HomeAgente />} />
         <Route path="/HomeAuditor" element={<HomeAuditor />} />
         <Route path="/EvaluationAgente" element={<EvaluationAgente />} />
-        <Route path="/EvaluationAuditor" element={<EvaluationAuditor />} />
-        <Route path="/Page2Auditor" element={<Page2Auditor />} />
+        <Route path="/EvaluationAuditor/:id" element={<EvaluationAuditor />} />
+        <Route path="/Page2Auditor/:id" element={<Page2Auditor />} />
       </Routes>
     </BrowserRouter>
   );

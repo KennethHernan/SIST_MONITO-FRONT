@@ -21,6 +21,11 @@ export const listAgentsDB = async () => {
   return response;
 };
 
+export const listSurveyAgentById = async(id) =>{
+  const response = await MonitoApi.get(`/survey/surveys/${id}`)
+  return response
+}
+
 // AUDITOR
 export const authLoginAuditorDB = async (dataLogin) => {
   const response = await MonitoApi.post("/auth/login-auditor", dataLogin);

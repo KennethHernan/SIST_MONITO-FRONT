@@ -1,6 +1,5 @@
-import { authLoginDB } from "../services";
 import { listAgentsDB } from "../services";
-
+import { findAgentByID } from "../services/agent";
 
 export const useAgents = () => {
   const getAgents = async () => {
@@ -20,6 +19,15 @@ export const useAgents = () => {
     }
 
   }
+
+  const getAgentById = async (id) => {
+    try {
+      const response = await findAgentByID(id);
+      return response.data;
+    } catch (error) {
+      return { ok: false, msg: "holas" };
+    }
+  };
   
-  return { getAgents, getSurveys };
+  return { getAgents, getSurveys, getAgentById };
   }
