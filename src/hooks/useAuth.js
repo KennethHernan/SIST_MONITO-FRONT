@@ -36,5 +36,5 @@ export const useAuth = () => {
     }
   };
 
-  return { login, loginAuditor, register };
+  return { login, loginAuditor, register, user };
 };

@@ -11,7 +11,7 @@ import { useAtom } from "jotai";
 import { dataStoreSelectedAgent } from "../store/storeAgent";
 
 export const Page2Auditor = () => {
-  const [dataStoreAgent, setDataStoreAgent] = useAtom(dataStoreSelectedAgent)
+  const [dataStoreAgent, setDataStoreAgent] = useAtom(dataStoreSelectedAgent);
   const [dataSurvey, setDataSurvey] = useState([]);
   const { getSurveyAgentByID } = useAudit();
   const { getAgentById } = useAgents();
@@ -24,18 +24,17 @@ export const Page2Auditor = () => {
   }, []);
 
   const getAgent = async () => {
-    const response = await getAgentById(params.id);
-    console.log(response);
+    const response = await getAgentById(Number(params.id));
+
     if (response) {
       setDataStoreAgent(response);
     }
   };
 
-  console.log(dataStoreAgent,"este es el dato del agente GLOBAL")
-
   const listSurvey = async () => {
-    const response = await getSurveyAgentByID(params.id);
-    console.log(response)
+    const response = await getSurveyAgentByID(Number(params.id));
+    console.log(response);
+
     if (response) {
       setDataSurvey(response);
     }
@@ -118,7 +117,7 @@ export const Page2Auditor = () => {
                         }}
                         className="audit-button"
                       >
-                        Ver encuentas
+                        Auditar
                       </button>
                     </td>
                   </tr>

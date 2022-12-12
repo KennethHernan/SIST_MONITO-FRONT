@@ -22,13 +22,12 @@ export const HomeAuditor = () => {
     if (response) {
       setDataAgents(response);
     }
-    console.log(user, "estado global de user");
 
     if (!dataAgents) {
       return null;
     }
   };
-  console.log(dataAgents);
+
   return (
     <div className="bodyAgente">
       <HeaderAuditor />

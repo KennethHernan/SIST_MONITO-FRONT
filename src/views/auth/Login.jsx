@@ -15,7 +15,6 @@ export const Login = () => {
 
     if (checked === "auditor") {
       const { dataAuditor, msg } = await loginAuditor(dataLogin);
-      console.log(dataAuditor);
 
       if (!dataAuditor) {
         return;
@@ -26,7 +25,6 @@ export const Login = () => {
 
     if (checked === "agent") {
       const { dataAgent, msg } = await login(dataLogin);
-      console.log(dataAgent);
 
       if (!dataAgent) {
         return;

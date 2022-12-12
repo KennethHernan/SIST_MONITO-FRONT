@@ -1,6 +1,6 @@
 import "../style/evaluation.css";
 import { HeaderAuditor } from "../components/ui/HeaderAuditor";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import usuario from "../assets/usuario.png";
 import audio from "../assets/pipipAudio.mp4";
 import { useParams } from "react-router-dom";
@@ -9,9 +9,17 @@ import { dataStoreSelectedAgent } from "../store/storeAgent";
 import { useState } from "react";
 import { useAudit } from "../hooks/useAudit";
 import { dataUser } from "../store/storeUser";
-     
+import { useEffect } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export const EvaluationAuditor = () => {
+  const params = useParams();
+  const [dataStoreAgent, setDataStoreAgent] = useAtom(dataStoreSelectedAgent);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  console.log(dataStoreAgent)
+
   const dataInterfaceAudit = {
     audio_url: "asd",
     feedback: "",
@@ -19,25 +27,19 @@ export const EvaluationAuditor = () => {
     score2: "",
     score3: "",
     survey: {
-      idSurvey: "",
+      idSurvey: params.id,
     },
     auditor: {
-  }
-}
+      idAuditor: user.idAuditor,
+    },
+  };
 
-  const [dataStoreAgent, setDataStoreAgent] = useAtom(dataStoreSelectedAgent);
   const [dataAudit, setDataAudit] = useState(dataInterfaceAudit);
-  const {sendAudit} = useAudit();
+  const { sendAudit } = useAudit();
 
-  console.log(dataStoreAgent, "storeAgente de evaluacion selected");
-  const params = useParams();
-  
-
-  const createAudit = async() =>{
-    const send = await sendAudit(dataAudit)
-    console.log(send)
-    console.log(dataAudit,"este es el data audit")
-  }
+  const createAudit = async () => {
+    const send = await sendAudit(dataAudit);
+  };
 
   return (
     <div className="bodyAgente">
@@ -47,7 +49,7 @@ export const EvaluationAuditor = () => {
           <p>Quality Evaluation</p>
         </div>
         <div>
-          <Link to="/Page2Auditor">
+          <Link to={`/Page2Auditor/${dataStoreAgent.idAgent}`}>
             <p>Regresar</p>
           </Link>
         </div>
@@ -69,8 +71,8 @@ export const EvaluationAuditor = () => {
             </div>
             <div>
               <p>Created Date:</p>
-              {dataStoreAgent.surveys
-                .filter((survey) => survey.idSurvey == params.id)
+              {dataStoreAgent?.surveys
+                ?.filter((survey) => survey.idSurvey == params.id)
                 .map((survey) => {
                   return <p key={survey.idSurvey}>{survey.createdAt}</p>;
                 })}
@@ -91,37 +93,37 @@ export const EvaluationAuditor = () => {
           </div>
         </div>
         <form>
-        <div className="content-progress">
-          <li>
-            <div className="progress-info">
-              <div className="info1">
-                <p>GREETING & CLOSING</p>
-              </div>
-              <div className="info2">
-                <p>Weight 75%</p>
-              </div>
-              <div className="info3">
-                <p className="plomo">100%</p>
-              </div>
-            </div>
-            <div className="progress-result">
-              <div className="result-info">
-                <div className="info4">
-                  <p className="plomo">
-                    Experiencia - Ofrece un saludo cordial al cliente
-                  </p>
+          <div className="content-progress">
+            <li>
+              <div className="progress-info">
+                <div className="info1">
+                  <p>GREETING & CLOSING</p>
                 </div>
-                <div className="info5">
-                  <div>
-                    <p>Group:</p>
-                  </div>
-                  <div>
-                    <p className="plomo">Experiencia</p>
-                  </div>
+                <div className="info2">
+                  <p>Weight 75%</p>
                 </div>
-                <p>Si</p>
+                <div className="info3">
+                  <p className="plomo">100%</p>
+                </div>
               </div>
-              <div className="result-grafico">
+              <div className="progress-result">
+                <div className="result-info">
+                  <div className="info4">
+                    <p className="plomo">
+                      Experiencia - Ofrece un saludo cordial al cliente
+                    </p>
+                  </div>
+                  <div className="info5">
+                    <div>
+                      <p>Group:</p>
+                    </div>
+                    <div>
+                      <p className="plomo">Experiencia</p>
+                    </div>
+                  </div>
+                  <p>Si</p>
+                </div>
+                <div className="result-grafico">
                   <div className="grafico-info">
                     <div>
                       <label>0</label>
@@ -130,47 +132,54 @@ export const EvaluationAuditor = () => {
                       <label>5</label>
                     </div>
                   </div>
-                  <input onChange={(e)=>{
-                        setDataAudit({...dataAudit, score1: e.target.value})
-                  }} type="range" id="rango1" min="0" max="5" step="1" />
-              </div>
-              <div className="result-pie">
-                <div>
-                  <p className="plomo">5/5</p>
+                  <input
+                    onChange={(e) => {
+                      setDataAudit({ ...dataAudit, score1: e.target.value });
+                    }}
+                    type="range"
+                    id="rango1"
+                    min="0"
+                    max="5"
+                    step="1"
+                  />
                 </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="progress-info">
-              <div className="info1">
-                <p>GREETING & CLOSING</p>
-              </div>
-              <div className="info2">
-                <p>Weight 75%</p>
-              </div>
-              <div className="info3">
-                <p className="plomo">100%</p>
-              </div>
-            </div>
-            <div className="progress-result">
-              <div className="result-info">
-                <div className="info4">
-                  <p className="plomo">
-                    Experiencia - Ofrece un saludo cordial al cliente
-                  </p>
-                </div>
-                <div className="info5">
+                <div className="result-pie">
                   <div>
-                    <p>Group:</p>
-                  </div>
-                  <div>
-                    <p className="plomo">Experiencia</p>
+                    <p className="plomo">5/5</p>
                   </div>
                 </div>
-                <p>Si</p>
               </div>
-              <div className="result-grafico">
+            </li>
+            <li>
+              <div className="progress-info">
+                <div className="info1">
+                  <p>GREETING & CLOSING</p>
+                </div>
+                <div className="info2">
+                  <p>Weight 75%</p>
+                </div>
+                <div className="info3">
+                  <p className="plomo">100%</p>
+                </div>
+              </div>
+              <div className="progress-result">
+                <div className="result-info">
+                  <div className="info4">
+                    <p className="plomo">
+                      Experiencia - Ofrece un saludo cordial al cliente
+                    </p>
+                  </div>
+                  <div className="info5">
+                    <div>
+                      <p>Group:</p>
+                    </div>
+                    <div>
+                      <p className="plomo">Experiencia</p>
+                    </div>
+                  </div>
+                  <p>Si</p>
+                </div>
+                <div className="result-grafico">
                   <div className="grafico-info">
                     <div>
                       <label>0</label>
@@ -179,47 +188,54 @@ export const EvaluationAuditor = () => {
                       <label>5</label>
                     </div>
                   </div>
-                  <input onChange={(e)=>{
-                        setDataAudit({...dataAudit, score2: e.target.value})
-                  }} type="range" id="rango1" min="0" max="5" step="1" />
-              </div>
-              <div className="result-pie">
-                <div>
-                  <p className="plomo">5/5</p>
+                  <input
+                    onChange={(e) => {
+                      setDataAudit({ ...dataAudit, score2: e.target.value });
+                    }}
+                    type="range"
+                    id="rango1"
+                    min="0"
+                    max="5"
+                    step="1"
+                  />
                 </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="progress-info">
-              <div className="info1">
-                <p>GREETING & CLOSING</p>
-              </div>
-              <div className="info2">
-                <p>Weight 75%</p>
-              </div>
-              <div className="info3">
-                <p className="plomo">100%</p>
-              </div>
-            </div>
-            <div className="progress-result">
-              <div className="result-info">
-                <div className="info4">
-                  <p className="plomo">
-                    Experiencia - Ofrece un saludo cordial al cliente
-                  </p>
-                </div>
-                <div className="info5">
+                <div className="result-pie">
                   <div>
-                    <p>Group:</p>
-                  </div>
-                  <div>
-                    <p className="plomo">Experiencia</p>
+                    <p className="plomo">5/5</p>
                   </div>
                 </div>
-                <p>Si</p>
               </div>
-              <div className="result-grafico">
+            </li>
+            <li>
+              <div className="progress-info">
+                <div className="info1">
+                  <p>GREETING & CLOSING</p>
+                </div>
+                <div className="info2">
+                  <p>Weight 75%</p>
+                </div>
+                <div className="info3">
+                  <p className="plomo">100%</p>
+                </div>
+              </div>
+              <div className="progress-result">
+                <div className="result-info">
+                  <div className="info4">
+                    <p className="plomo">
+                      Experiencia - Ofrece un saludo cordial al cliente
+                    </p>
+                  </div>
+                  <div className="info5">
+                    <div>
+                      <p>Group:</p>
+                    </div>
+                    <div>
+                      <p className="plomo">Experiencia</p>
+                    </div>
+                  </div>
+                  <p>Si</p>
+                </div>
+                <div className="result-grafico">
                   <div className="grafico-info">
                     <div>
                       <label>0</label>
@@ -228,45 +244,59 @@ export const EvaluationAuditor = () => {
                       <label>5</label>
                     </div>
                   </div>
-                  <input onChange={(e)=>{
-                        setDataAudit({...dataAudit, score3: e.target.value})
-                  }} type="range" id="rango1" min="0" max="5" step="1" />
+                  <input
+                    onChange={(e) => {
+                      setDataAudit({ ...dataAudit, score3: e.target.value });
+                    }}
+                    type="range"
+                    id="rango1"
+                    min="0"
+                    max="5"
+                    step="1"
+                  />
+                </div>
+                <div className="result-pie">
+                  <div>
+                    <p className="plomo">5/5</p>
+                  </div>
+                </div>
               </div>
-              <div className="result-pie">
+            </li>
+            <div className="content-feedback">
+              <p>FeedBack:</p>
+              <p className="plomo">
+                Buena gestión, felicitaciones a seguir el proceso correrto
+                siempre. 🙌🙌🙌
+              </p>
+            </div>
+            <div className="content-coment">
+              <div className="coment-header">
                 <div>
-                  <p className="plomo">5/5</p>
+                  <p>Comment</p>
+                </div>
+                <div></div>
+              </div>
+              <div className="coment-body">
+                <div className="body-area">
+                  <textarea
+                    onChange={(e) => {
+                      setDataAudit({ ...dataAudit, feedback: e.target.value });
+                    }}
+                    type="range"
+                    id="rango1"
+                    min="0"
+                    max="5"
+                    step="1"
+                  />
+                </div>
+                <div className="body-chat">
+                  <div>
+                    <input type="button" onClick={createAudit} />
+                  </div>
                 </div>
               </div>
             </div>
-          </li>
-          <div className="content-feedback">
-            <p>FeedBack:</p>
-            <p className="plomo">
-              Buena gestión, felicitaciones a seguir el proceso correrto
-              siempre. 🙌🙌🙌
-            </p>
           </div>
-          <div className="content-coment">
-            <div className="coment-header">
-              <div>
-                <p>Comment</p>
-              </div>
-              <div></div>
-            </div>
-            <div className="coment-body">
-              <div className="body-area">
-              <textarea onChange={(e)=>{
-                        setDataAudit({...dataAudit, feedback: e.target.value})
-                  }} type="range" id="rango1" min="0" max="5" step="1" />
-              </div>
-              <div className="body-chat">
-                  <div>
-                    <input type="button" onClick={createAudit}/>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
         </form>
       </div>
       <div className="content-foot">
