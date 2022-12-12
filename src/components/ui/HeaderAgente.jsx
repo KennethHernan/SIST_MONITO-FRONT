@@ -3,8 +3,11 @@ import logo  from "../../assets/mtg.png";
 import config  from "../../assets/config.png";
 import notifi  from "../../assets/notifi.png";
 import usuario  from "../../assets/usuario.png";
+import { useAuth } from "../../hooks/useAuth";
 
 export const HeaderAgente = () => {
+    const { user } = useAuth();
+
     return (
         <header className="header">
             <div className="content-logo">
@@ -16,7 +19,7 @@ export const HeaderAgente = () => {
                 </ul>
                 <div className="content-header">
                     <div className="profile">
-                      <p>Armando Perez</p>
+                      <p>{user.fullname}</p>
                       <div className="circle">
                         <img src={usuario} alt="logo"/>
                       </div>

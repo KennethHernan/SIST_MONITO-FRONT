@@ -8,8 +8,6 @@ import { useAtom } from "jotai";
 import { dataStoreSelectedAgent } from "../store/storeAgent";
 import { useState } from "react";
 import { useAudit } from "../hooks/useAudit";
-import { dataUser } from "../store/storeUser";
-import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 export const EvaluationAuditor = () => {
@@ -18,7 +16,7 @@ export const EvaluationAuditor = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  console.log(dataStoreAgent)
+  console.log(dataStoreAgent);
 
   const dataInterfaceAudit = {
     audio_url: "asd",
@@ -92,7 +90,7 @@ export const EvaluationAuditor = () => {
             </div>
           </div>
         </div>
-        <form>
+        <form onSubmit={createAudit}>
           <div className="content-progress">
             <li>
               <div className="progress-info">
@@ -262,13 +260,6 @@ export const EvaluationAuditor = () => {
                 </div>
               </div>
             </li>
-            <div className="content-feedback">
-              <p>FeedBack:</p>
-              <p className="plomo">
-                Buena gestión, felicitaciones a seguir el proceso correrto
-                siempre. 🙌🙌🙌
-              </p>
-            </div>
             <div className="content-coment">
               <div className="coment-header">
                 <div>
@@ -278,12 +269,12 @@ export const EvaluationAuditor = () => {
               </div>
               <div className="coment-body">
                 <div className="body-area">
+                  <p>FeedBack:</p>
                   <textarea
                     onChange={(e) => {
                       setDataAudit({ ...dataAudit, feedback: e.target.value });
                     }}
                     type="range"
-                    id="rango1"
                     min="0"
                     max="5"
                     step="1"
@@ -291,7 +282,7 @@ export const EvaluationAuditor = () => {
                 </div>
                 <div className="body-chat">
                   <div>
-                    <input type="button" onClick={createAudit} />
+                      <button type="sumbit">ENVIAR</button>
                   </div>
                 </div>
               </div>

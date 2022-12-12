@@ -282,14 +282,18 @@ progress {
     flex-direction: column;
     align-items: center;
 }
-.body-area textarea{
+#root > div > div.content-body > form > div > div > div.coment-body > div.body-area > textarea,
+#root > div > div.content-body > div.content-progress > div.content-coment > div.coment-body > div.body-area > input {
     width: 90%;
     padding: 20px;
     margin: 20px 30px;
     outline: none;
     border: none;
     resize: none;
-    color: #c7c6c6;
+    color: black;
+    overflow-y: auto;
+    background-color: #dddddd;
+    cursor: default;
 }
 
 .body-chat{
@@ -312,7 +316,7 @@ progress {
     width: 10%;
     height: 35px;
 }
-#root > div > div.content-body > form > div > div.content-coment > div.coment-body > div.body-chat > div > input[type=submit]{
+#root > div > div.content-body > form > div > div > div.coment-body > div.body-chat > div > button{
     border-radius: 50px;
     border: none;
     outline: none;
@@ -354,4 +358,8 @@ progress {
 }
 .foor-puntuacion div:last-child{
     color: red;
+}
+
+.coment-body p{
+    margin-left: 35px;
 }

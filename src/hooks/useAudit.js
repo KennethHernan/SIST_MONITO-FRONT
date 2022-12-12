@@ -1,4 +1,4 @@
-import { listSurveyAgentById } from "../services";
+import { listSurveyAgentById, listAuditAgentById } from "../services";
 import { createAudit } from "../services/audit";
 
 export const useAudit = () => {
@@ -22,5 +22,16 @@ export const useAudit = () => {
       return { ok: false, msg: "error" };
     }
   };
-  return { getSurveyAgentByID, sendAudit };
+
+  const getAuditAgentByID = async (id) => {
+    try {
+      const response = await listAuditAgentById(id);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return { ok: false, msg: "error" };
+    }
+  };
+
+  return { getSurveyAgentByID, sendAudit, getAuditAgentByID };
 };
