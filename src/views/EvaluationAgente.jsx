@@ -24,6 +24,8 @@ export const EvaluationAgente = () => {
     if (response) {
       setDataAudit(response);
     }
+
+    console.log(dataAudit);
   };
   console.log(dataAudit);
   return (
@@ -62,7 +64,7 @@ export const EvaluationAgente = () => {
             </div>
             <div>
               <p>Evaluated by:</p>
-              <p>Kenneth DeLaCuz_Rom</p>
+              <p>Aron Crisóstomo</p>
             </div>
             <div>
               <p>Auditor Id:</p>
@@ -70,13 +72,11 @@ export const EvaluationAgente = () => {
             </div>
             <div>
               <p>Auditor Fullname:</p>
-              <p>Kenneth De la Cruz</p>
+              <p>Arón Crisóstomo</p>
             </div>
             <div>
               <p>Created Date:</p>
-              {dataAudit.map((audit) => {
-                return <p key={audit.idAudit}>{audit.createdAt}</p>;
-              })}
+              2022-12-12
             </div>
             <div>
               <p>State: </p>

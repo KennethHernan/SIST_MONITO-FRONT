@@ -32,7 +32,7 @@ export const HomeAgente = () => {
                   <img src={usuario} alt="usuario" />
                 </div>
                 <div className="main-description">
-                  <p>Auditor: Kenneth</p>
+                  <p>Auditor: Aron Crisóstomo</p>
                   <div className="main-fecha">
                     <div>
                       <p>

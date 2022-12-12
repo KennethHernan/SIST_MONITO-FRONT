@@ -35,8 +35,13 @@ export const EvaluationAuditor = () => {
   const [dataAudit, setDataAudit] = useState(dataInterfaceAudit);
   const { sendAudit } = useAudit();
 
-  const createAudit = async () => {
-    const send = await sendAudit(dataAudit);
+  const createAudit = async (e) => {
+    e.preventDefault();
+    const { data } = await sendAudit(dataAudit);
+
+    if (data.message) {
+      navigate(`/Page2Auditor/${dataStoreAgent.idAgent}`);
+    }
   };
 
   return (
@@ -282,7 +287,7 @@ export const EvaluationAuditor = () => {
                 </div>
                 <div className="body-chat">
                   <div>
-                      <button type="sumbit">ENVIAR</button>
+                      <button type="submit">ENVIAR</button>
                   </div>
                 </div>
               </div>
